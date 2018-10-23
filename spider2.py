@@ -1,3 +1,4 @@
+import csv
 import re
 import time
 
@@ -61,8 +62,13 @@ def parse_position_detail(url):
     }
     positions.append(position)
     print(positions)
+    # save_to_csv(positions)
 
-
+def save_to_csv(positions):
+    headers = ['name','company', 'salary','city','work_years','education','desc']
+    with open('lagoudata.csv', 'w', encoding='utf-8',newline='') as fp:
+        writer = csv.DictWriter(fp,headers)
+        writer.writerows(positions)
 
 def main():
     request_list_page()
